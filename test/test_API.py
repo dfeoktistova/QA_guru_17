@@ -61,6 +61,12 @@ def test_delete_user():
     assert response.text == ""
 
 
+def test_delete_user_negative():
+    response = requests.delete("https://reqres.in/api/users/23754")
+
+    assert response.status_code == 404
+
+
 def test_post_unsuccessful_login():
     data = {
         "email": "peter@klaven"
@@ -71,5 +77,3 @@ def test_post_unsuccessful_login():
 
     assert response.status_code == 400
     assert body['error'] == "Missing password"
-
-
